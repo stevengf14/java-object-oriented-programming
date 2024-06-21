@@ -23,5 +23,13 @@ public class Main {
         System.out.println(Tree.TRUNK_COLOR);
         Tree.announceTree();
 
+        /*-------------------------CHALLENGE-------------------------*/
+        System.out.println("/*-------------------------CHALLENGE-------------------------*/");
+        Employee employee1 = new Employee("Steven", 30, 5800.27, "USA");
+        Employee employee2 = new Employee("Andres", 21, 3500.60, "Europe");
+
+        employee1.raiseSalary(2000.33);
+
+        System.out.println("salary 1: " + employee1.salary + "\nsalary 2: " + employee2.salary);
     }
 }
