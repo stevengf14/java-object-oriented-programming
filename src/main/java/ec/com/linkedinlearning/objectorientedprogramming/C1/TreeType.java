@@ -1,4 +1,4 @@
-package ec.com.linkedinlearning.objectorientedprogramming.C1_V1;
+package ec.com.linkedinlearning.objectorientedprogramming.C1;
 
 /**
  *
