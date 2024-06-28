@@ -10,7 +10,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        /*OddArrayList oddListy = new OddArrayList(1, 2, 3, 4, 7, 9, -13);
+        /*ConditionArrayList oddListy = new ConditionArrayList(1, 2, 3, 4, 7, 9, -13);
 
         System.out.println(oddListy);
 
@@ -25,11 +25,17 @@ public class Main {
 
         System.out.println(listy);*/
 
-        OddArrayList oddListy = new OddArrayList(7);
+        ConditionArrayList oddListy = new ConditionArrayList(n -> Math.abs(n) % 2 == 1);
         oddListy.add(1);
         oddListy.add(2);
         addRandomNumber(oddListy);
         System.out.println(oddListy);
+
+        ConditionArrayList conditionListy = new ConditionArrayList(n -> Math.abs(n) % 2 == 0);
+        conditionListy.add(1);
+        conditionListy.add(2);
+        addRandomNumber(conditionListy);
+        System.out.println(conditionListy);
 
         ArrayList<Integer> listy = new ArrayList<>();
         listy.add(1);
@@ -40,12 +46,16 @@ public class Main {
     }
 
     public static void addRandomNumber(ArrayList<Integer> list) {
-        int originalSize = list.size();
         Random random = new Random();
-        while (originalSize + 1 != list.size()) {
-            int n = random.nextInt(1000);
-            list.add(n);
+        int n = random.nextInt(1000);
+
+        if (list instanceof ConditionArrayList) {
+            ConditionArrayList conditionList = (ConditionArrayList) list;
+            while (!conditionList.isEligible(n)) {
+                n = random.nextInt(1000);
+            }
         }
+        list.add(n);
     }
 
 }

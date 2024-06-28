@@ -3,6 +3,7 @@ package ec.com.linkedinlearning.objectorientedprogramming.C4;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
@@ -10,23 +11,26 @@ import java.util.stream.Collectors;
  *
  * @author steve
  */
-public class OddArrayList extends ArrayList<Integer> {
+public class ConditionArrayList extends ArrayList<Integer> {
 
-    public OddArrayList(Integer... nums) {
+    private Predicate<Integer> condition;
+
+    public ConditionArrayList(Predicate<Integer> predicate, Integer... nums) {
         super(Arrays.stream(nums)
-                .filter(OddArrayList::isOdd).collect(Collectors.toList()));
+                .filter(predicate).collect(Collectors.toList()));
+        this.condition = condition;
     }
 
     @Override
     public void add(int index, Integer element) {
-        if (isOdd(element)) {
+        if (isEligible(element)) {
             super.add(index, element);
         }
     }
 
     @Override
     public boolean add(Integer element) {
-        if (isOdd(element)) {
+        if (isEligible(element)) {
             return super.add(element);
         } else {
             return false;
@@ -51,11 +55,11 @@ public class OddArrayList extends ArrayList<Integer> {
     @Override
     public boolean addAll(int index, Collection<? extends Integer> c) {
         return super.addAll(index, c.stream()
-                .filter(OddArrayList::isOdd)
+                .filter(this::isEligible)
                 .collect(Collectors.toList()));
     }
 
-    public static boolean isOdd(Integer element) {
-        return Math.abs(element) % 2 == 1;
+    public boolean isEligible(Integer element) {
+        return condition.test(element);
     }
 }
