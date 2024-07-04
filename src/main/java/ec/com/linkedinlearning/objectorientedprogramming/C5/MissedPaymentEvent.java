@@ -6,19 +6,15 @@ import java.sql.Timestamp;
  *
  * @author steve
  */
-public class MissedPaymentEvent implements Event {
-
-    private Long createdTimestamp;
-    private String id;
+public class MissedPaymentEvent extends GenericEvent implements Event {
 
     public MissedPaymentEvent(String id) {
-        this.id = id;
-        this.createdTimestamp = new Timestamp(System.currentTimeMillis()).getTime();
+        super(id);
     }
 
     @Override
     public Long getTimeStamp() {
-        return this.createdTimestamp;
+        return createdTimestamp;
     }
 
     @Override
