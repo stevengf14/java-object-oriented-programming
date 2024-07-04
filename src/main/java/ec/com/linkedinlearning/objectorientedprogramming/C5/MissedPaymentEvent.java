@@ -13,11 +13,6 @@ public class MissedPaymentEvent extends GenericEvent implements Event {
     }
 
     @Override
-    public Long getTimeStamp() {
-        return createdTimestamp;
-    }
-
-    @Override
     public void process() {
         System.out.println("Customer: " + id + " missed their payment. Sending a bill to the customer.");
     }

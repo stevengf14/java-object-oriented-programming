@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  *
  * @author steve
  */
-public class GenericEvent {
+public abstract class GenericEvent implements Event {
 
     protected Long createdTimestamp;
     protected String id;
@@ -15,5 +15,12 @@ public class GenericEvent {
         this.id = id;
         this.createdTimestamp = new Timestamp(System.currentTimeMillis()).getTime();
     }
+
+    @Override
+    public Long getTimeStamp() {
+        return createdTimestamp;
+    }
+
+    public abstract void process();
 
 }

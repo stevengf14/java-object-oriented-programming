@@ -13,11 +13,6 @@ public class PasswordChangeEvent extends GenericEvent implements Event {
     }
 
     @Override
-    public Long getTimeStamp() {
-        return createdTimestamp;
-    }
-
-    @Override
     public void process() {
         System.out.println("Customer: " + id + " changed their password. Sending a confirmation email to the customer.");
     }
